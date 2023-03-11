@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 14:38:32 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/09 14:57:41 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:17:09 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,10 +52,4 @@ char	*encode_binary(char *s)
 	free(binary);
 	binary = NULL;
 	return (message);
-}
-
-int	main(void)
-{
-	printf("%s\n", encode_binary("dani"));
-	return (0);
 }

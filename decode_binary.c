@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/09 15:16:48 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/09 18:25:24 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/11 18:16:53 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	c_decode_binary(char *s)
 	return (res);
 }
 
-char    *decode_binary(char *s)
+char	*decode_binary(char *s)
 {
 	size_t	len;
 	size_t	n;
@@ -47,10 +47,4 @@ char    *decode_binary(char *s)
 		n++;
 	}
 	return (str);
-}
-
-int	main(void)
-{
-	printf("%s\n",decode_binary("01100100011000010110111001101001"));
-	return (0);
 }
