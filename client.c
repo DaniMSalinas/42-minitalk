@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/11 18:15:55 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:38:20 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,17 +66,11 @@ void	send_message(char *ptr)
 	while (i < len)
 	{
 		if (ptr[i] == 48)
-		{
-			if (kill(g_pid, SIGUSR1) == -1)
-				exit(1);
-		}
+			kill(g_pid, SIGUSR1);
 		if (ptr[i] == 49)
-		{
-			if (kill(g_pid, SIGUSR2) == -1)
-				exit(1);
-		}
+			kill(g_pid, SIGUSR2);
 		i++;
-		usleep(5);
+		usleep(500);
 	}
 }
 

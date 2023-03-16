@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:48:12 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/11 18:19:05 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/16 18:57:19 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,39 +28,39 @@ char	c_decode_binary(char *s)
 	return (res);
 }
 
-void	message_handler(int sig, siginfo_t *theinfo, void *foo)
+void	message_handler(int sig)
 {
 	static int	bits = 0;
-	char		binary[7];
+	char		binary[8];
 	char		c;
 
+	(void) sig;
 	if (sig == SIGUSR1)
 		binary[bits] = '0';
 	else if (sig == SIGUSR2)
 		binary[bits] = '1';
 	bits++;
+	usleep(50);
 	if (bits == 8)
 	{
 		c = c_decode_binary(binary);
 		write(1, &c, 1);
 		bits = 0;
+		usleep(50);
 	}
 }
 
 int	main(void)
 {
 	pid_t				pid;
-	struct sigaction	myaction;
 
-	sigemptyset(&myaction.sa_mask);
-	myaction.sa_sigaction = message_handler;
-	myaction.sa_flags = SA_SIGINFO;
-	sigaction(SIGUSR1, &myaction, NULL);
-	sigaction(SIGUSR2, &myaction, NULL);
+	pid = 0;
+	signal(SIGUSR1, message_handler);
+	signal(SIGUSR2, message_handler);
 	pid = getpid();
 	ft_putnbr_fd(pid, 1);
-	ft_putstr_fd("\n", 1);
+	write(1, "\n", 1);
 	while (42)
-		pause();
+		;
 	return (0);
 }
