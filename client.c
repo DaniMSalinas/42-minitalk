@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/16 18:38:20 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/19 22:51:25 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 pid_t	g_pid;
 
-char	*c_encode_binary(char c, char **binary)
+void	c_encode_binary(char c, char **binary)
 {
 	int		n;
 	int		i;
@@ -28,7 +28,6 @@ char	*c_encode_binary(char c, char **binary)
 		else
 			(*binary)[i++] = '0';
 	}
-	return (*binary);
 }
 
 char	*encode_binary(char *s)
@@ -42,13 +41,13 @@ char	*encode_binary(char *s)
 		return (NULL);
 	len = ft_strlen(s);
 	message = (char *)ft_calloc(len * 8, sizeof(char));
-	binary = (char *)ft_calloc(9 + 1, sizeof(char));
+	binary = (char *)ft_calloc(8, sizeof(char));
 	if (!message || !binary)
 		return (NULL);
 	i = 0;
 	while (i < len)
 	{
-		binary = c_encode_binary(s[i++], &binary);
+		c_encode_binary(s[i++], &binary);
 		message = ft_strjoin(message, binary);
 	}
 	free(binary);
@@ -70,7 +69,7 @@ void	send_message(char *ptr)
 		if (ptr[i] == 49)
 			kill(g_pid, SIGUSR2);
 		i++;
-		usleep(500);
+		usleep(200);
 	}
 }
 
@@ -79,6 +78,11 @@ int	main(int argc, char *argv[])
 	if (argc != 3)
 	{
 		ft_putstr_fd("Usage : ./client <pid> <message_to_send>\n", 1);
+		exit(EXIT_FAILURE);
+	}
+	if (argv[1] <= 0)
+	{
+		ft_putstr_fd("Invalid pid\n", 1);
 		exit(EXIT_FAILURE);
 	}
 	g_pid = ft_atoi(argv[1]);
