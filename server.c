@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 16:48:12 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/19 22:46:20 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:30:28 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int	main(void)
 	signal(SIGUSR1, message_handler);
 	signal(SIGUSR2, message_handler);
 	pid = getpid();
+	ft_putstr_fd("PID: ", 1);
 	ft_putnbr_fd(pid, 1);
 	write(1, "\n", 1);
 	while (42)

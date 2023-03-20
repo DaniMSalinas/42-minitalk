@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/20 11:19:32 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/20 12:40:41 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,15 +59,22 @@ void	send_message(char *ptr)
 {
 	size_t	len;
 	size_t	i;
+	int		result;
 
 	len = ft_strlen(ptr);
 	i = 0;
+	result = 0;
 	while (i < len)
 	{
-		if (ptr[i] == 48)
-			kill(g_pid, SIGUSR1);
-		if (ptr[i] == 49)
-			kill(g_pid, SIGUSR2);
+		if (ptr[i] == '0')
+			result = kill(g_pid, SIGUSR1);
+		else if (ptr[i] == '1')
+			result = kill(g_pid, SIGUSR2);
+		if (result == -1)
+		{
+			ft_putstr_fd("Error sending message\n", 1);
+			exit(EXIT_FAILURE);
+		}
 		i++;
 		usleep(200);
 	}
@@ -82,12 +89,13 @@ int	main(int argc, char *argv[])
 		ft_putstr_fd("Usage : ./client <pid> <message_to_send>\n", 1);
 		exit(EXIT_FAILURE);
 	}
-	if (argv[1] <= 0)
+	g_pid = ft_atoi(argv[1]);
+	if (g_pid <= 0)
 	{
 		ft_putstr_fd("Invalid pid\n", 1);
 		exit(EXIT_FAILURE);
 	}
-	g_pid = ft_atoi(argv[1]);
 	send_message(encode_binary(argv[2]));
+	exit(EXIT_SUCCESS);
 	return (0);
 }
