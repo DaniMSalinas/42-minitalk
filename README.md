@@ -1,12 +1,4 @@
 # 42-minitalk
-
- # Cloning
-
- ```
- git clone --recursive git@github.com:mlanca-c/Minitalk.git
- cd Minitalk
- make all
- ```
  
  # Compiling
  
@@ -18,5 +10,5 @@
  ```
 
  ```
- $ ./client <PID_SERVER> <STRING>
+ $ ./client <PID_SERVER> <MESSAGE>
  ```
