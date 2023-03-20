@@ -1,7 +1,5 @@
 # 42-minitalk
  
- # Compiling
- 
  ```
  $ ./server
  PID: <PID_SERVER>
