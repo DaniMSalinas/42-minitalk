@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/19 22:51:25 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/20 11:19:32 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	send_message(char *ptr)
 		i++;
 		usleep(200);
 	}
+	free(ptr);
+	ptr = NULL;
 }
 
 int	main(int argc, char *argv[])
