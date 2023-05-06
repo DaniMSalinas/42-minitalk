@@ -6,7 +6,7 @@
 #    By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/09/11 17:55:42 by dmaldona          #+#    #+#              #
-#    Updated: 2023/03/19 14:08:08 by dmaldona         ###   ########.fr        #
+#    Updated: 2023/03/21 12:45:08 by dmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,7 @@ CFLAGS	= -Wall -Wextra -Werror -I.
 SRCS	= ft_atoi.c\
 		ft_bzero.c \
 		ft_calloc.c \
-		ft_memcpy.c \
 		ft_strlen.c \
-		ft_strjoin.c \
 		ft_putstr_fd.c \
 		ft_putnbr_fd.c
 

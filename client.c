@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/20 12:40:41 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/03/20 16:18:39 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,44 +14,34 @@
 
 pid_t	g_pid;
 
-void	c_encode_binary(char c, char **binary)
-{
-	int		n;
-	int		i;
-
-	n = 7;
-	i = 0;
-	while (n >= 0)
-	{
-		if (c & (1 << n--))
-			(*binary)[i++] = '1';
-		else
-			(*binary)[i++] = '0';
-	}
-}
-
 char	*encode_binary(char *s)
 {
 	size_t	len;
 	size_t	i;
+	int		n;
+	int		j;
 	char	*message;
-	char	*binary;
 
 	if (!s)
 		return (NULL);
 	len = ft_strlen(s);
 	message = (char *)ft_calloc(len * 8, sizeof(char));
-	binary = (char *)ft_calloc(8, sizeof(char));
-	if (!message || !binary)
+	if (!message)
 		return (NULL);
 	i = 0;
+	j = 0;
 	while (i < len)
 	{
-		c_encode_binary(s[i++], &binary);
-		message = ft_strjoin(message, binary);
+		n = 7;
+		while (n >= 0)
+		{
+			if (s[i] & (1 << n--))
+				message[j++] = '1';
+			else
+				message[j++] = '0';
+		}
+		i++;
 	}
-	free(binary);
-	binary = NULL;
 	return (message);
 }
 
