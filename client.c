@@ -6,7 +6,7 @@
 /*   By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/08 17:43:01 by dmaldona          #+#    #+#             */
-/*   Updated: 2023/03/20 16:18:39 by dmaldona         ###   ########.fr       */
+/*   Updated: 2023/06/17 13:32:31 by dmaldona         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ pid_t	g_pid;
 
 char	*encode_binary(char *s)
 {
-	size_t	len;
 	size_t	i;
 	int		n;
 	int		j;
@@ -24,13 +23,12 @@ char	*encode_binary(char *s)
 
 	if (!s)
 		return (NULL);
-	len = ft_strlen(s);
-	message = (char *)ft_calloc(len * 8, sizeof(char));
+	message = (char *)ft_calloc(ft_strlen(s) * 8 + 1, sizeof(char));
 	if (!message)
 		return (NULL);
 	i = 0;
 	j = 0;
-	while (i < len)
+	while (i < ft_strlen(s))
 	{
 		n = 7;
 		while (n >= 0)

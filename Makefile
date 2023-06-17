@@ -6,7 +6,7 @@
 #    By: dmaldona <dmaldona@student.42madrid.com    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/08 16:59:44 by dmaldona          #+#    #+#              #
-#    Updated: 2023/03/20 12:28:33 by dmaldona         ###   ########.fr        #
+#    Updated: 2023/06/17 15:30:24 by dmaldona         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,3 +48,5 @@ re: fclean all
 
 norme: 
 	@norminette server.c client.c
+
+.PHONY:		all clean fclean re
